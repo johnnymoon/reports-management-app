@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 const EMPTY_FORM = {
   ReportType: '',
@@ -23,7 +24,7 @@ const FIELD_LABELS = {
 };
 
 async function apiRequest(url, options = {}) {
-  const response = await fetch(url, {
+  const response = await fetch(`${API_BASE_URL}${url}`, {
     ...options,
     headers: {
       ...(options.body ? { 'Content-Type': 'application/json' } : {}),
